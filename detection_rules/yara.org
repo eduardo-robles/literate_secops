@@ -1,0 +1,80 @@
+#+TITLE: Yara Detection Rules
+#+AUTHOR: Eduardo Robles
+* Yara
+** Malicious Browser extension
+#+begin_src yara
+rule mal_browser_extension_ids {
+  meta:
+      description = "Identifies potentially malicious browser extension files by known IDs or common manifest patterns."
+      author = "Based on Eduardo Robles, updated for Extension IDs"
+      // Add references to sources of malicious IDs if available
+      // reference = "https://virustotal.com/gui/search/id%3Abcdefghijklmnopqrstuvwxyzabcde" // Example reference format
+
+  strings:
+      // --- Specific Known Malicious Extension IDs ---
+      // IMPORTANT: Replace these example IDs with actual IDs of known malicious extensions you want to detect.
+      $mal_chrome_id_1 = "abcdefghijklmnopqrstuvwxyzabcdef" // Example bad Chrome ID (32 lowercase letters)
+      $mal_chrome_id_2 = "anothermaliciousidhere1234567890" // Example bad Chrome ID
+      $mal_chrome_id_3 = "yet_another_bad_id_zxcvbnmlkjhgf" // Example bad Chrome ID
+
+      $mal_firefox_id_1 = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}" // Example bad Firefox UUID (use actual bad UUID)
+      $mal_firefox_id_2 = "malicious-addon-name@domain.com" // Example bad Firefox email-like ID
+
+      // Add more specific malicious IDs here as you discover them.
+
+
+      // --- Patterns for Common Extension ID Formats and Context ---
+      // These help identify *potential* IDs within configuration files like manifest.json
+
+      // Chrome ID pattern: Often appears after "id": followed by 32 lowercase letters
+      // Using a regex for robustness, looking for "id": " followed by [a-z]{32}"
+      // Note: This can match IDs in other contexts if not combined with other strings.
+      $chrome_id_format_pattern = /"id":\s*"[a-z]{32}"/
+
+      // Firefox UUID pattern: The standard {8-4-4-4-12} hexadecimal format
+      $firefox_uuid_pattern = /{[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}}/ nocase
+
+      // Firefox email-like pattern: Common for legacy addons
+      // Be cautious, this is a heuristic and can have false positives
+      $firefox_email_pattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/ nocase
+
+      // Context strings often found near IDs in manifest files
+      // Helps confirm the file is likely an extension manifest
+      $manifest_context_chrome = "\"applications\": {\"chrome\":" // Found in Chrome/Edge manifests
+      $manifest_context_gecko = "\"applications\": {\"gecko\":"   // Found in Firefox manifests (newer)
+      $manifest_context_id_key = "\"id\":"                         // Just the literal "id": key
+
+      // Optional: Add patterns for common manifest file names
+      $manifest_filename = "manifest.json" wide ascii // Search for the filename itself (if scanning archives)
+      $install_rdf_filename = "install.rdf" wide ascii // Older Firefox manifest file name
+      $manifest_json_content = "manifest_version" // Common key in manifest.json files
+      $install_rdf_content = "<em:type>" // Common key in install.rdf files
+
+  condition:
+      // We want to match if:
+      // 1. Any of the *specific known malicious IDs* are found OR
+      // 2. Common *patterns* for extension IDs are found AND relevant *manifest context* is present.
+
+      (
+          any of ($mal_chrome_id_*) or       // Match any of the known bad Chrome IDs
+          any of ($mal_firefox_id_*)        // Match any of the known bad Firefox IDs
+      )
+      or // OR
+
+      (
+          // Match the Chrome ID pattern AND at least one relevant manifest context string
+          $chrome_id_format_pattern and ($manifest_context_chrome or $manifest_context_id_key or $manifest_json_content)
+      )
+      or // OR
+
+      (
+          // Match potential Firefox ID patterns AND at least one relevant manifest context string
+          ($firefox_uuid_pattern or $firefox_email_pattern) and ($manifest_context_gecko or $manifest_context_id_key or $install_rdf_content or $manifest_json_content)
+      )
+
+      // Optional: Add conditions to reduce scope or false positives if needed.
+      // For example, check file size, name patterns, or specific magic bytes if scanning archives.
+      // and filesize < 10MB // Ignore very large files
+      // and ($manifest_filename or $install_rdf_filename) // Require the presence of a manifest filename (useful for archives)
+}
+#+end_src

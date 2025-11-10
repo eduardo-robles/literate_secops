@@ -1,0 +1,25 @@
+*** API Playbooks
+**** Virustotal                                                     :verb:
+template https://www.virustotal.com/api/v3/
+Accept: application/json
+X-Apikey:
+Content-Type: application/x-www-form-urlencoded
+***** Get an IP address report
+GET ip_addresses/xxx.xxx.xxx.xxx
+***** Get a Domain Report
+GET domains/legaz.es
+***** Upload a file
+Filesize capped at 32MB
+GET files
+Content-Type: mulitpart/form-data
+***** Get a file report
+Use the ID from the previous "Upload a file"
+GET files/ID
+***** Get a URL report
+GET urls/ID
+***** Get a Hash Report
+GET files/SHA256HASHGOESHERE
+**** LOLRMM                                                         :verb:
+template https://lolrmm.io/api/
+***** Get LOLRMM
+GET rmm_tools.json

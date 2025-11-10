@@ -1,0 +1,21 @@
+#+TITLE: README
+#+AUTHOR: Eduardo Robles
+#+EMAIL: eduardorobles@proton.me
+* Literate SecOps
+** Preamble
+I was demonstrating how I use Emacs and Org-mode to organize my work. While doing so I found my workflow is unique and reproducible. I had spoken about this idea and it my workflow mimics that already studied. Literate DevOps is a concept developed by Emacs user Howard Abrams. I propose something new for those in the Cybersecurity field: Literate SecOps.
+** About
+Literate SecOps is the act of defining your documentation, communications, and code.
+** Prerequisites
+
+** Installing
+
+** Usage
+
+** Authors
+[[https://eduardorobles.com][Eduardo Robles]] - Idea
+** Acknowledgements
+
+** License
+
+** Contributions

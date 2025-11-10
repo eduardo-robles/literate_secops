@@ -1,0 +1,43 @@
+#+TITLE: Literate Secops
+#+AUTHOR: Eduardo Robles
+#+OPTIONS: toc:nil num:nil
+* About
+* FAQ
+* Infrastructure
+** Directory Structure
+** Ansible Configurations
+*** Inventory
+*** Group Variables
+*** Host Variables
+*** Playbooks
+**** VM setup
+**** Container setup
+**** Malware Station
+**** Blue Teamer Station
+**** Red Teamer Station
+**** Offline Station
+** Virtual Machine Configurations
+*** Fedora CoreOS
+*** REMnux
+*** QEMU/KVM
+**** Virt Manager
+** Container Configurations
+*** REMnux
+*** THUG
+*** Unfurl
+*** Custom
+*** BootC
+** IdP
+*** Pangolin/Traefik
+** LLM
+*** Ramallama
+** Telemetry
+*** Incident Response/Forensics
+**** Velociraptor
+*** Inventory
+**** OSQuery
+*** Network Monitoring
+**** Security Onion
+**** Suricata
+**** RITA
+* Notes

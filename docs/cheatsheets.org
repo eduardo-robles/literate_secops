@@ -1,0 +1,33 @@
+* Cheatsheets
+** Windows
+*** Directories to log/monitor
+| Directory Path                                                            | Reason                                                              |
+|---------------------------------------------------------------------------+---------------------------------------------------------------------|
+| C:\Windows\System32\config\SAM                                            | Stores local password hashes                                        |
+| C:\Windows\repair\SAM                                                     | Backup of user credentials                                          |
+| C:\Windows\System32\config\SECURITY                                       | Holds security policies and access control settings                 |
+| C:\Windows\System32\winevt                                                | Stores Windows Event Logs                                           |
+| C:\Windows\System32\config\SYSTEM                                         | Tracks system-wide changes and configurations                       |
+| C:\Windows\System32\SOFTWARE                                              | Registry hive with details on installed software and changes        |
+| C:\Windows\Prefetch                                                       | Tracks recently executed programs                                   |
+| C:\Windows\AppCompact\Programs\Amcache.hve                                | Logs details of executed applications                               |
+| C:\Users\*\NTUSER.dat                                                     | Holds user-specific registry settings, often abused for persistence |
+| C:\Users\*\AppData\Roaming\Micrososft\Windows\Start\Menu\Programs\Startup | User-specific persistence mechanisms                                |
+| C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup              | Global startup for all users                                        |
+*** Useful Repair Commands
+| Command                                      | Reason                                            |
+|----------------------------------------------+---------------------------------------------------|
+| sfc /scannow                                 | Scans and repairs filesystem                      |
+| DISM /Online /Cleanup-Image /RestoreHealth   | Repairs Windows image and recovery                |
+| chkdsk C: /f /r                              | Checks for bad sectors of drive letter            |
+| net stop wuauserv                            | Stops a Windows Update                            |
+| net stop bits                                | Stops the background intellegent transfer service |
+| del %winddir\\SoftwareDistribution\*.* /s /q | Deletes corrupted Windows Update cache files      |
+| net start weauserv                           | Deletes corrupted Windows Update cache files      |
+| net start bits                               | Restarts the BITS service                         |
+** Linux
+** Wireshark
+*Useful filters*
+- ip.addr == x.x.x.x
+- ip.addr == x.x.x.x/XX
+- ip.src == x.x.x.y && ip.dst == x.x.x.z
