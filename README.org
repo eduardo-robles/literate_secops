@@ -7,15 +7,20 @@ I was demonstrating how I use Emacs and Org-mode to organize my work. While doin
 ** About
 Literate SecOps is the act of defining your documentation, communications, and code.
 ** Prerequisites
-
+- Emacs
+- Org-mode
 ** Installing
-
+Download the templates and start using with Emacs.
 ** Usage
-
+Most templates leverage Emacs or Org-mode features/packages such as:
+- Org babel
+- Yassnippet
+- Verb
+- Eshell
 ** Authors
 [[https://eduardorobles.com][Eduardo Robles]] - Idea
 ** Acknowledgements
-
+[[https://howardism.org/Technical/Emacs/literate-devops.html][Literate DevOps]] by Howard Abrams
 ** License
-
+MIT
 ** Contributions
