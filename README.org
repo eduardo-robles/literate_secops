@@ -21,6 +21,9 @@ Most templates leverage Emacs or Org-mode features/packages such as:
 [[https://eduardorobles.com][Eduardo Robles]] - Idea
 ** Acknowledgements
 [[https://howardism.org/Technical/Emacs/literate-devops.html][Literate DevOps]] by Howard Abrams
+** References
+- [[https://www.eduardorobles.com/posts/cyber-work-templates-by-me/][Cyber Work Templates]] by Eduardo Robles
+- [[https://www.eduardorobles.com/posts/conducting-cybersecurity-investigations-in-emacs/][Conducting Cybersecurity Investigations in Emacs]] by Eduardo Robles
 ** License
 MIT
 ** Contributions
