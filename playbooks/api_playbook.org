@@ -26,7 +26,16 @@ Authorization: API-Keyxxxxxx
 Content-Type: application/json
 ***** Search IT Lookup
 POST intelligence/api/search
+
+{
+  "query": "threatName:\"lumma\" AND submissionCountry:\"US\"",
+  "startDate": "2025-10-20",
+  "endDate": "2025-10-30"
+}
 **** LOLRMM                                                         :verb:
 template https://lolrmm.io/api/
 ***** Get LOLRMM
 GET rmm_tools.json
+*** References
+**** Any.Run TI Lookup
+https://any.run/api-documentation/#tag/ti
