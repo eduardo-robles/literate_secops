@@ -19,6 +19,13 @@ GET files/ID
 GET urls/ID
 ***** Get a Hash Report
 GET files/SHA256HASHGOESHERE
+**** IN-PROGRESS Any.Run TI Lookup                                  :verb:
+template https://api.any.run/v1
+Accept: application/json
+Authorization: API-Keyxxxxxx
+Content-Type: application/json
+***** Search IT Lookup
+POST intelligence/api/search
 **** LOLRMM                                                         :verb:
 template https://lolrmm.io/api/
 ***** Get LOLRMM
