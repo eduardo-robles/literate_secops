@@ -24,7 +24,7 @@ template https://api.any.run/v1
 Accept: application/json
 Authorization: API-Keyxxxxxx
 Content-Type: application/json
-***** Search IT Lookup
+***** Search TI Lookup
 POST intelligence/api/search
 
 {
